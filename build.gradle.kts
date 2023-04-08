@@ -16,7 +16,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.projectlombok:lombok")
-	annotationProcessor("org.projectlombok:lombok")
+    testImplementation("junit:junit:4.13.1")
+    annotationProcessor("org.projectlombok:lombok")
 }
 
 tasks.withType<Test> {

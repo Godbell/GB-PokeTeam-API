@@ -1,12 +1,20 @@
 package kr.godbell.poketeam.endpoints;
 
+import kr.godbell.poketeam.services.PokeApiPokemonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import kr.godbell.poketeam.models.Pokemon;
 
 @RestController
 public class PokeDex
 {
+	@Autowired
+	private final PokeApiPokemonService pokeApiPokemonService;
+
+	public PokeDex(PokeApiPokemonService pokeApiPokemonService)
+	{
+		this.pokeApiPokemonService = pokeApiPokemonService;
+	}
+
 	@GetMapping("/api/v1/pokedex")
 	public String pokeDex()
 	{
@@ -15,16 +23,11 @@ public class PokeDex
 
 	@GetMapping("api/v1/pokedex/pokemon/{idOrName}")
 	@ResponseBody
-	public Pokemon pokemon(
-			@PathVariable("idOrName") String idOrName,
+	public kr.godbell.poketeam.models.Pokemon pokemon(
+			@PathVariable("idOrName") Object idOrName,
 			@RequestParam(defaultValue = "en") String lang
 		)
 	{
-		Pokemon pokemon = new Pokemon();
-
-		pokemon.setId(0);
-		pokemon.setName("TEST");
-
-		return pokemon;
+		return pokeApiPokemonService.enrichPokemon(idOrName);
 	}
 }
