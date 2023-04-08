@@ -30,9 +30,9 @@ public class PokeApiPokemonService
         }
 
         ResponseEntity<String> response
-                = restTemplate.getForEntity(
-                url,
-                String.class
+            = restTemplate.getForEntity(
+            url,
+            String.class
         );
 
         ObjectMapper objectMapper = new ObjectMapper();
