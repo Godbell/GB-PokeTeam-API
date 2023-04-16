@@ -38,5 +38,7 @@ public class Pokemon
     @JsonProperty("types")
     @JsonDeserialize(using = PokemonTypeDeserializer.class)
     public List<String> types;
-    public PokemonStat[] stats;
+    @JsonProperty("stats")
+    @JsonDeserialize(using = PokemonStatsDeserializer.class)
+    public PokemonStats stats;
 }
